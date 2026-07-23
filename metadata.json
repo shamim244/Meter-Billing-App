@@ -1,0 +1,6 @@
+{
+  "name": "Meter Billing Management",
+  "description": "NBPDCL electricity bill management dashboard, CA account manager, and billing utility tools.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
