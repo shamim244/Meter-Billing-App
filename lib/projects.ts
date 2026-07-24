@@ -87,7 +87,7 @@ export async function setActiveCycleId(id: string) {
 }
 
 export function getCycleBillsDir(cycleId: string): string {
-  const pDir = path.join(process.cwd(), 'data', 'cycles', cycleId, 'bills');
+  const pDir = path.join('/tmp', 'data', 'cycles', cycleId, 'bills');
   if (!fs.existsSync(pDir)) {
     fs.mkdirSync(pDir, { recursive: true });
   }
@@ -177,7 +177,7 @@ export async function deleteBillingCycle(cycleId: string) {
   db.run(`DELETE FROM cycle_bills WHERE cycle_id = ?`, [cycleId]);
   db.run(`DELETE FROM cycle_logs WHERE cycle_id = ?`, [cycleId]);
 
-  const pDir = path.join(process.cwd(), 'data', 'cycles', cycleId);
+  const pDir = path.join('/tmp', 'data', 'cycles', cycleId);
   if (fs.existsSync(pDir)) {
     fs.rmSync(pDir, { recursive: true, force: true });
   }

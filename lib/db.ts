@@ -30,7 +30,7 @@ export interface ConsumerBillRow {
   status: 'pending' | 'submitted' | 'critical' | 'doubt';
 }
 
-const DB_PATH = path.join(process.cwd(), 'data', 'nbpdcl.sqlite');
+const DB_PATH = path.join('/tmp', 'data', 'nbpdcl.sqlite');
 
 let dbInstance: Database | null = null;
 let sqlEngine: any = null;
@@ -41,7 +41,7 @@ export async function getDb(): Promise<Database> {
   if (!sqlEngine) {
     try {
       // Use eval("require") to bypass Webpack module wrapping which breaks Emscripten's 'exports' variable
-      const initSqlJs = eval("require")('sql.js');
+      const initSqlJs = require('sql.js');
       const wasmPath = path.join(process.cwd(), 'node_modules', 'sql.js', 'dist', 'sql-wasm.wasm');
       if (fs.existsSync(wasmPath)) {
         const wasmBuffer = fs.readFileSync(wasmPath);
